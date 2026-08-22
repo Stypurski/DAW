@@ -6,11 +6,11 @@
         <title>Calculadora</title> 
 </head>
 <body>
-    <form action="Calculadora.php" method = "GET" name = "Calculadora">
-        x: <input type:"number" name:"x"><br>
-		sinal: <input type:"text" name:"sinal"><br>
-		y: <input type:"number" name:"y"><br>
-		<input type:"submit" value:"enviar">
+    <form action="Calculadora.php" method ="GET" name = "Calculadora">
+        x: <input type="number" name="x"><br>
+		sinal: <input type="text" name="sinal"><br>
+		y: <input type="number" name="y"><br>
+		<input type="submit" value="enviar">
     </form>
 </body>
 </html>
