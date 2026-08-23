@@ -1,12 +1,18 @@
 <?php
 
+    $msg = "";
+
+    if (isset($_GET["sucesso"])) {
+    
+         $msg="Aluno cadastrado com sucesso!";
+    }
+
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 
     $nome = $_POST["nome"];
     $curso = $_POST["curso"];
     $matricula = $_POST["matricula"];
-    
-    $msg = "";
 
     if(!file_exists("alunos.txt")){
 
@@ -25,7 +31,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     fwrite($ArqAluno, $linha);
     fclose($ArqAluno);
 
-    $msg = "Aluno cadastrado com sucesso!";
+       header("Location: ArqAluno.php?sucesso=1");
+       exit;
 
 }
 ?>
