@@ -21,6 +21,7 @@
 $valor1 = $_GET["x"];
 $valor2 = $_GET["y"];
 $sinal = $_GET["sinal"];
+$final = 0;
 
 switch($sinal){
     case "+":
