@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     fwrite($ArqAluno, $linha);
     fclose($ArqAluno);
 
-       header("Location: ArqAluno.php?sucesso=1");
+       header("Location: listagem.php?sucesso=1");
        exit;
 
 }
@@ -53,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
         <h1>Cadastro Aluno</h1>
         <p class = "subtitulo">Preencha com os dados do aluno</p>
 
-        <form action="ArqAluno.php" method="POST">
+        <form action="cadastro.php" method="POST">
 
         <label for="matricula">Matricula: </label>
         <input type="text" name="matricula" id="matricula" required>
@@ -77,15 +77,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
                 <?php
             } 
             ?>
+
+                    <ul> 
+
+            <br><br>
+            <li><a href="listagem.php">Listar todos os Alunos</a></li> 
+        </ul>
+
+    </div>
 </div>
 
   <br>
-        <ul>
-           <li><a href="listagem.php">Listar todas os Alunos</a></li>
-           <li><a href="exclusao.php">Excluir Aluno</a></li>
-        </ul>
-</br>
-
 </body>
 </html>
 

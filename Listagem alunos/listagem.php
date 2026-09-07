@@ -8,7 +8,12 @@
      <link rel="stylesheet" href="alunos.css">
 </head>
 <body>
-    <H1>Listagem alunos</h1>
+    <body>
+
+<div class="container-listagem">
+
+    <h1>Listagem alunos</h1>
+
     <table>
         <tr>
             <th>Matricula</th>
@@ -36,9 +41,11 @@
         fclose($arqAlunos);
     ?>
 
-    </table>
+        </table>
+
     <p><?php echo $msg; ?></p>
-    <br>
+
+</div>
 
 </body>
 </html>

@@ -116,3 +116,55 @@ input[type="submit"]:hover {
 
     font-weight: bold;
 }
+
+.container-listagem {
+    width: 90%;
+    max-width: 1000px;
+
+    background-color: #fff5f9;
+
+    padding: 35px;
+
+    border-radius: 20px;
+
+    box-shadow: 0 10px 30px rgba(150, 50, 90, 0.25);
+}
+
+.container-listagem table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 25px;
+}
+
+.container-listagem th,
+.container-listagem td {
+    padding: 12px;
+    border: 1px solid #f3a6c4;
+    text-align: center;
+}
+
+.container-listagem th {
+    background-color: #d81b60;
+    color: white;
+}
+
+.container-listagem td {
+    background-color: white;
+    color: #8e3157;
+}
+
+.container-listagem a {
+    display: inline-block;
+    margin: 3px;
+    padding: 8px 12px;
+
+    background-color: #d81b60;
+    color: white;
+
+    text-decoration: none;
+    border-radius: 8px;
+}
+
+.container-listagem a:hover {
+    background-color: #ad1457;
+}

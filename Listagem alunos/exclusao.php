@@ -17,15 +17,13 @@ fwrite($arqAlunosAlterado, $linha);
 
 while($linha = fgets($arqAlunos)){
 
-    $linha = fgets($arqAlunos);
     $colunaDados = explode(";", $linha);
 
     if(trim($colunaDados[0]) == $matricula){ 
         continue; 
-     } 
+    } 
 
-   fwrite($arqAlunosAlterado, $linha);
-
+    fwrite($arqAlunosAlterado, $linha);
 }
 
 fclose($arqAlunos);
