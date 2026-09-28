@@ -11,19 +11,58 @@ $resposta = "";
 
 if($_SERVER['REQUEST_METHOD'] == 'GET'){
 
-    $numero = $_GET["numero];
+    $numero = $_GET["numero"];
     $ArqPerg= fopen("perguntas.txt", "r") or die("Erro ao criar arquivo de perguntas.");
 
-
-    fgets($arqPerg);
+    $cont = 1;
 
     while($linha1 = fgets($arqPerg)){
 
-        $colunaDados = explode(";", $linha1);
+        if($cont == $numero){
+            $pergunta = trim($linha1);
+            break;
     }
+        $cont++;
+}
 
     fclose($arqPerg);
-}
+
+    $ArqOp = fopen("opcoes.txt", "r") or die("Erro ao abrir arquivo de opcoes.");
+
+    $contador = 1;
+
+    while($linha2 = fgets($ArqOp)){
+        if($contador == $numero){
+
+            $colunaDados = explode(";", trim($linha2));
+
+            $opcoesA = $colunaDados[0];
+            $opcoesB = $colunaDados[1];
+            $opcoesC = $colunaDados[2];
+            $opcoesD = $colunaDados[3];
+            $opcoesE = $colunaDados[4];
+
+            break;
+        }
+        $contador++;
+    }
+
+    fclose($ArqOp);
+
+    $ArqResp = fopen("respostas.txt", "r") or die("Erro ao abrir arquivo de respostas.");
+    $contador = 1;
+
+     while($linha3 = fgets($ArqResp)){
+         
+        if($contador== $numero){
+            $resposta = trim($linha3);
+            break;
+        }
+        $contador++;
+    }
+
+    fclose($ArqResp);
+} 
 
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
@@ -33,7 +72,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $opcoesC = $_POST["opcoesC"];
     $opcoesD = $_POST["opcoesD"];
     $opcoesE = $_POST["opcoesE"];
-    $resposta = &_POST["resposta"];
+    $resposta = $_POST["resposta"];
+    $numero = $_POST["numero"];
     
     
 
@@ -46,39 +86,42 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $ArqResp= fopen("respostas.txt", "r") or die("Erro ao abrir arquivo de respostas.");
     $ArqRespAlterada = fopen("RespAlterada.txt", "w") or die("Erro ao criar arquivo");
     
-    
 
-    $linha1 = fgets($ArqPerg);
-    fwrite($arqPergAlterada, $linha1);
-    
-    $linha2 = fgets($ArqOp);
-    fwrite($ArqOpAlterada, $linha2);
-    
-    $linha3 = fgets($AperguntasrqResp);
-    fwrite($ArqRespAlterada, $linha3);
-    
-    
+     $contador = 1;
     
     while($linha1 = fgets($arqPerg)){
 
-        $colunaDados1 = explode(";", $linha1);
+        if($contador == $numero){
+            $linha1 = $pergunta . "\n";
+        }
 
-        fwrite($arqPergAlterada, $linha);
-    }
+        fwrite($arqPergAlterada, $linha1);
+        $contador++;
+    } 
+
+     $contador = 1;
     
      while($linha2 = fgets($ArqOp)){
 
-        $colunaDados2 = explode(";", $linha2;
+       if($contador == $numero){
+            $linha2 = $opcoesA . ";" . $opcoesB . ";" . $opcoesC . ";" . $opcoesD . ";" . $opcoesE . "\n";
+        }
 
         fwrite($ArqOpAlterada, $linha2);
-    }
+        $contador++;
+    } 
+
+    $contador = 1;
     
     while($linha3 = fgets($ArqResp)){
-perguntas
-        $colunaDados3 = explode(";", $linha3;
+        
+        if($contador == $numero){
+            $linha3 = $resposta . "\n";
+        }
 
         fwrite($ArqRespAlterada, $linha3);
-    }
+        $contador++;
+    } 
     
     
 
@@ -112,9 +155,11 @@ perguntas
 </head>
 
 <body>
-    <h1>Alterar pergunta/h1>
+    <h1>Alterar pergunta</h1>
 
     <form action="editar.php" method="POST">
+
+        <input type="hidden" name="numero" value="<?php echo $numero; ?>">
 
         <label for="pergunta">Pergunta: </label>
         <input type="text" name="pergunta" id="pergunta" value="<?php echo $pergunta; ?>" required>
@@ -134,7 +179,7 @@ perguntas
         <input type="text" name="opcoesD" id="opcoesD" value="<?php echo $opcoesD; ?>" required>
         
         <label for="opcoesE">Opcao E: </label>
-        <input type="text" name="opcoesE" id="opcoesE" value="<?php echo $opcoesD; ?>" required>
+        <input type="text" name="opcoesE" id="opcoesE" value="<?php echo $opcoesE; ?>" required>
         
         
         <label for="resposta">Resposta:</label>
