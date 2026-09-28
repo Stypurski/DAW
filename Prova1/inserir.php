@@ -9,53 +9,33 @@
     
     if ($_SERVER['REQUEST_METHOD'] == 'POST'){
         
-    $numero++;
     $pergunta = $_POST["pergunta"];
     $opcoesA = $_POST["opcoesA"];
     $opcoesB = $_POST["opcoesB"];
     $opcoesC = $_POST["opcoesC"];
     $opcoesD = $_POST["opcoesD"];
     $opcoesE = $_POST["opcoesE"];
-    $resposta = &_POST["resposta"];
+    $resposta = $_POST["resposta"];
     
 
     if(!file_exists("perguntas.txt")){
 
-    $numero = 0;
        $ArqPerg= fopen("perguntas.txt", "w") or die("Erro ao criar arquivo de perguntas.");
-
-       $linha1 = $pergunta . "\n";
-
-       fwrite($ArqPerg, $linha1);
-
        fclose($ArqPerg);
-
     }
     
     
     if(!file_exists("opcoes.txt")){
 
        $ArqOp=  fopen("opcoes.txt", "w") or die("Erro ao criar arquivo de opcoes.");
-
-       $linha2 = $opcoesA . ";" . $opcoesB . ";" . $opcoesC . ";" . $opcoesD . ";" . $opcoesE . "\n";
-
-       fwrite($ArqOp, $linha2);
-
        fclose($ArqOp);
-
     }
     
     
     if(!file_exists("respostas.txt")){
 
        $ArqResp= fopen("respostas.txt", "w") or die("Erro ao criar arquivo de respostas.");
-
-       $linha3 = $resposta . "\n";
-
-       fwrite($ArqResp, $linha3);
-
        fclose($ArqResp);
-
     }
 
     $ArqPerg = fopen("perguntas.txt", "a") or die("Erro ao abrir arquivo de perguntas");
@@ -76,7 +56,7 @@
     header("Location: inserir.php?sucesso=1");
     exit;
 
-
+    }
 ?>
 
 <!DOCTYPE html>
