@@ -8,51 +8,39 @@
     
     
     if ($_SERVER['REQUEST_METHOD'] == 'POST'){
-        
+
+    $tipo = isset($_POST["tipo"]) ? $_POST["tipo"] : "multipla";
     $pergunta = $_POST["pergunta"];
-    $opcoesA = $_POST["opcoesA"];
-    $opcoesB = $_POST["opcoesB"];
-    $opcoesC = $_POST["opcoesC"];
-    $opcoesD = $_POST["opcoesD"];
-    $opcoesE = $_POST["opcoesE"];
     $resposta = $_POST["resposta"];
-    
-
-    if(!file_exists("perguntas.txt")){
-
-       $ArqPerg= fopen("perguntas.txt", "w") or die("Erro ao criar arquivo de perguntas.");
-       fclose($ArqPerg);
-    }
-    
-    
-    if(!file_exists("opcoes.txt")){
-
-       $ArqOp=  fopen("opcoes.txt", "w") or die("Erro ao criar arquivo de opcoes.");
-       fclose($ArqOp);
-    }
-    
-    
-    if(!file_exists("respostas.txt")){
-
-       $ArqResp= fopen("respostas.txt", "w") or die("Erro ao criar arquivo de respostas.");
-       fclose($ArqResp);
-    }
 
     $ArqPerg = fopen("perguntas.txt", "a") or die("Erro ao abrir arquivo de perguntas");
-    $linha1 = $pergunta . "\n";
+
+    $linha1 = $tipo . "|" . $pergunta . "\n";
     fwrite($ArqPerg, $linha1);
     fclose($ArqPerg);
 
+    
     $ArqOp = fopen("opcoes.txt", "a") or die("Erro ao abrir arquivo de opcoes");
-    $linha2 =  $opcoesA . ";" . $opcoesB . ";" . $opcoesC . ";" . $opcoesD . ";" . $opcoesE . "\n";
+    if ($tipo == "multipla") {    
+        $pergunta = $_POST["pergunta"];
+        $opcoesA = $_POST["opcoesA"];
+        $opcoesB = $_POST["opcoesB"];
+        $opcoesC = $_POST["opcoesC"];
+        $opcoesD = $_POST["opcoesD"];
+        $opcoesE = $_POST["opcoesE"];
+        $linha2 = $opcoesA . ";" . $opcoesB . ";" . $opcoesC . ";" . $opcoesD . ";" . $opcoesE . "\n";
+    }else{
+        $linha2 = "Texto\n";
+    }
+
     fwrite($ArqOp, $linha2);
     fclose($ArqOp);
-    
+
     $ArqResp = fopen("respostas.txt", "a") or die("Erro ao abrir arquivo de respostas");
-    $linha3 = $resposta."\n";
+    $linha3 = $resposta . "\n";
     fwrite($ArqResp, $linha3);
     fclose($ArqResp);
-    
+
     header("Location: inserir.php?sucesso=1");
     exit;
 
@@ -65,6 +53,7 @@
        <meta charset="UTF-8">
        <meta name="viewport" content="width=device-width, initial-scale=1.0">
        <title>Inserir perguntas</title>
+       <link rel="stylesheet" href="estilo.css">
     </head>
 
     <body>
