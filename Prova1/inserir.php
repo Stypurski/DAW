@@ -1,7 +1,9 @@
 <?php
 
     $msg="";
-    
+
+    $tipo = isset($_GET["tipo"]) ? $_GET["tipo"] : "multipla";
+
     if(isset($_GET["sucesso"])){
         $msg = "Pergunta cadastrada com sucesso";
     }
@@ -13,15 +15,30 @@
     $pergunta = $_POST["pergunta"];
     $resposta = $_POST["resposta"];
 
-    $ArqPerg = fopen("perguntas.txt", "a") or die("Erro ao abrir arquivo de perguntas");
+    if (!file_exists("perguntas.txt")) {
+        $ArqPerg = fopen("perguntas.txt", "w") or die("Erro ao criar arquivo de perguntas");
+        fclose($ArqPerg);
+    }
 
-    $linha1 = $tipo . "|" . $pergunta . "\n";
+    if (!file_exists("opcoes.txt")) {
+        $ArqOp = fopen("opcoes.txt", "w") or die("Erro ao criar arquivo de opcoes.");
+        fclose($ArqOp);
+    }
+
+    if (!file_exists("respostas.txt")) {
+        $ArqResp = fopen("respostas.txt", "w") or die("Erro ao criar arquivo de respostas.");
+        fclose($ArqResp);
+    }
+
+        
+
+    $ArqPerg= fopen("perguntas.txt", "a") or die("Erro ao abrir arquivo de perguntas");
+        
+    $linha1 = $tipo ."|". $pergunta ."\n";
     fwrite($ArqPerg, $linha1);
-    fclose($ArqPerg);
+    fclose( $ArqPerg);
 
-    
-    $ArqOp = fopen("opcoes.txt", "a") or die("Erro ao abrir arquivo de opcoes");
-    if ($tipo == "multipla") {    
+    if ($tipo == "multipla") {   
         $pergunta = $_POST["pergunta"];
         $opcoesA = $_POST["opcoesA"];
         $opcoesB = $_POST["opcoesB"];
@@ -33,6 +50,7 @@
         $linha2 = "Texto\n";
     }
 
+    $ArqOp = fopen("opcoes.txt", "a") or die("Erro ao abrir arquivo de opcoes");
     fwrite($ArqOp, $linha2);
     fclose($ArqOp);
 
@@ -59,53 +77,63 @@
     <body>
 
         <h1>Cadastro de perguntas para questionario</h1>
-        <p> Preencha os dados da pergunta</p>
+        <p class="subtitulo">Preencha os dados da pergunta</p>
 
-        <form action="inserir.php" method="POST">
+        <p style="text-align: center; margin-bottom: 20px;">
+            <a href="inserir.php?tipo=multipla" style="color: #c2185b; font-weight: bold; margin-right: 10px;">[Múltipla Escolha]</a>
+            <a href="inserir.php?tipo=texto" style="color: #c2185b; font-weight: bold;">[Texto]</a>
+        </p>
 
-        <label for="pergunta">Pergunta: </label>
+    <form action="inserir.php" method="POST">
+
+        <input type="hidden" name="tipo" value="<?php echo $tipo; ?>">
+
+        <label for="pergunta">Pergunta (<?php echo strtoupper($tipo); ?>): </label>
         <input type="text" name="pergunta" id="pergunta" required>
 
+
+
+            
+         <?php if ($tipo == "multipla"): ?>
         
          <label for="opcoesA">Opcao A: </label>
-        <input type="text" name="opcoesA" id="opcoesA" required>
-        
-        <label for="opcoesB">Opcao B: </label>
-        <input type="text" name="opcoesB" id="opcoesB" required>
-        
-        <label for="opcoesC">Opcao C: </label>
-        <input type="text" name="opcoesC" id="opcoesC" required>
-        
-        <label for="opcoesD">Opcao D: </label>
-        <input type="text" name="opcoesD" id="opcoesD" required>
-        
-        <label for="opcoesE">Opcao E: </label>
-        <input type="text" name="opcoesE" id="opcoesE" required>
-        
+         <input type="text" name="opcoesA" id="opcoesA"required>
 
-        <label for="resposta">Resposta: </label>
+         <label for="opcoesB">Opcao B: </label>
+         <input type="text" name="opcoesB" id="opcoesB"required>
+
+         <label for="opcoesC">Opcao C: </label>
+         <input type="text" name="opcoesC" id="opcoesC"required>
+
+         <label for="opcoesD">Opcao D: </label>
+         <input type="text" name="opcoesD" id="opcoesD"required>
+
+         <label for="opcoesE">Opcao E: </label>
+         <input type="text" name="opcoesE" id="opcoesE"required>
+         <?php endif; ?>
+        
+        <label for="resposta">Resposta / Gabarito: </label>
         <input type="text" name="resposta" id="resposta" required>
-
         <input type="submit" value="Cadastrar">
-    
-        </form>
+
+    </form>
         
         <?php
             
             if(!empty($msg)){
-                ?>
-                <p class="Mensagem">
-                    <?php echo $msg; ?>
-                </p>
-                <?php
+         ?>
+            <p class="Mensagem">
+            <?php echo $msg; ?>
+            </p>
+            <?php
             } 
             ?>
             
-        <ul> 
-            <br><br>
-            <li><a href="editar.php">Editar pergunta</a></li> 
-        </ul>
+        <br>
+        <div style="text-align: center;">
+            <a href="listagem.php" style="color: #c2185b; font-weight: bold;">Ver listagem de perguntas</a> | 
+            <a href="usuarios.php" style="color: #c2185b; font-weight: bold;">Gerenciar Usuários</a>
+        </div>
 
-  <br>
 </body>
 </html>
