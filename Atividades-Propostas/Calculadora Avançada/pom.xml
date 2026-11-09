@@ -21,7 +21,7 @@
     </properties>
 
     <dependencies>
-        <!-- Dependência essencial para criar a API Web com HTTP Requests -->
+   
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
