@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculadora JSON</title>
+    <script>
+function Calcula() {
+    let a = document.getElementById("a").value;
+    let b = document.getElementById("b").value;
+    let op = document.getElementById("op").value;
+
+    let xmlhttp = new XMLHttpRequest();
+
+    xmlhttp.onreadystatechange = function() {
+        if(this.readyState == 4 && this.status == 200){
+                    
+            let dados = JSON.parse(this.responseText);
+            document.getElementById("msg").innerHTML = "Resultado: " + dados.resultado;
+        }
+    };
+
+    let sinal = encodeURIComponent(op);
+
+    xmlhttp.open("GET", "http://localhost:8080/api/calcular?x=" + a + "&y=" + b + "&sinal=" + sinal);
+    xmlhttp.send();
+
+}
+        
+ </script>
+</head>
+<body>
+    <form name="frmCalc">
+        a: <input type="text" id="a"> <br> 
+        operador (+, -, *, /): <input type="text" id="op"><br>
+        b: <input type="text" id="b"><br><br>
+        <input type="button" value="Enviar" onclick="Calcula()">
+    </form>
+    
+    <br>
+    <h3 id="msg"></h3>
+</body>
+</html>
