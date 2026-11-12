@@ -21,7 +21,7 @@ function Calcula() {
 
     let sinal = encodeURIComponent(op);
 
-    xmlhttp.open("GET", "http://localhost:8080/api/calcular?x=" + a + "&y=" + b + "&sinal=" + sinal);
+    xmlhttp.open("GET", "CalculadoraSala.php?x=" + a + "&y=" + b + "&sinal=" + sinal);
     xmlhttp.send();
 
 }
