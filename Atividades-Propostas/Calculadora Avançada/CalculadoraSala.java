@@ -83,4 +83,4 @@ HTML
 </body>
 </html>
 
-O JS lê o JSON com JSON.parse() e joga a informação dados.resultado na tag <h3 id="msg">.
+
