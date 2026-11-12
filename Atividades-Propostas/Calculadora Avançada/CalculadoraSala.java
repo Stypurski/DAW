@@ -82,9 +82,5 @@ HTML
     <h3 id="msg"></h3>
 </body>
 </html>
-O que o código faz em 3 passos:
-O JS pega os valores e envia para o Java via URL (/api/calcular?x=...&y=...&sinal=...).
-
-O Java faz a conta e devolve a resposta no formato JSON {"resultado": 15}.
 
 O JS lê o JSON com JSON.parse() e joga a informação dados.resultado na tag <h3 id="msg">.
