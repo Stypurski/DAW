@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listar perguntas</title>
+    <link rel="stylesheet" href="estilo.css">
+</head>
+  
+<body>
+    <div class="container-listagem">
+        <h1>Listagem perguntas</h1>
+        <div style="text-align: center; margin-bottom: 20px;">
+            <a href="inserir.html">Cadastrar pergunta</a>
+            <a href="usuarios.html">Gerenciar usuarios</a>
+        </div>
+
+        <p id="mensagemAviso" class="mensagem" style="display: none; margin-bottom: 20px;"></p>
+
+        <div id="boxDetalhes" class="mensagem" style="display: none; text-align: left; background-color: #fff; border: 2px solid #d81b60; margin-bottom: 25px;">
+            <h3 style="color: #c2185b; margin-bottom: 10px;">Detalhes pergunta #<span id="detNumero"></span></h3>
+            <p><strong>Pergunta:</strong> <span id="detPergunta"></span></p>
+            <p><strong>Tipo:</strong> <span id="detTipo"></span></p>
+
+            <div id="detBlocoOpcoes">
+                <p style="margin-top: 10px;"><strong>Opcoes respostas:</strong></p>
+                <ul style="margin-left: 20px; color: #8e3157;">
+                    <li>A) <span id="detOpA"></span></li>
+                    <li>B) <span id="detOpB"></span></li>
+                    <li>C) <span id="detOpC"></span></li>
+                    <li>D) <span id="detOpD"></span></li>
+                    <li>E) <span id="detOpE"></span></li>
+                </ul>
+            </div>
+
+            <p style="margin-top: 10px;"><strong>Resposta/ Gabarito:</strong> <span id="detResposta"></span></p>
+            <br>
+            <a href="#" onclick="fecharDetalhes(); return false;">Fechar</a>
+        </div>
+
+        <div id="boxEditar" class="container" style="display: none; margin: 0 auto 30px auto; width: 100%; max-width: 500px;">
+            <h3 style="color: #c2185b; text-align: center;">Editar pergunta #<span id="tituloEditNum"></span></h3>
+
+            <form id="formEditar">
+                <input type="hidden" name="numero" id="editNumero">
+                <input type="hidden" name="tipo" id="editTipo">
+
+                <label for="editPergunta">Pergunta:</label>
+                <input type="text" name="pergunta" id="editPergunta" required>
+
+                <div id="grupoOpcoesEdit">
+                    <label for="editOpA">Opcao A:</label>
+                    <input type="text" name="opcoesA" id="editOpA" required>
+
+                    <label for="editOpB">Opcao B:</label>
+                    <input type="text" name="opcoesB" id="editOpB" required>
+
+                    <label for="editOpC">Opcao C:</label>
+                    <input type="text" name="opcoesC" id="editOpC" required>
+
+                    <label for="editOpD">Opcao D:</label>
+                    <input type="text" name="opcoesD" id="editOpD" required>
+
+                    <label for="editOpE">Opcao E:</label>
+                    <input type="text" name="opcoesE" id="editOpE" required>
+                </div>
+
+                <label for="editResposta">Resposta/ Gabarito:</label>
+                <input type="text" name="resposta" id="editResposta" required>
+
+                <input type="submit" value="Salvar">
+            </form>
+
+            <div style="text-align: center; margin-top: 10px;">
+                <a href="#" onclick="fecharEdicao(); return false;">Cancelar</a>
+            </div>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Numero</th>
+                    <th>Pergunta</th>
+                    <th>Tipo</th>
+                    <th>Acoes</th>
+                </tr>
+            </thead>
+            <tbody id="tabelaPerguntas">
+            </tbody>
+        </table>
+    </div>
+
+    <script src="listar.js"></script>
+</body>
+</html>
