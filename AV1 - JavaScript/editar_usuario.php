@@ -30,7 +30,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     unlink("usuarios.txt");
     rename("temp_usu.txt", "usuarios.txt");
 
-    echo json_encode(["mensagem"=> "Usuario alterado"]);
+    echo json_encode(["mensagem"=> "Usuario editado"]);
 }
 
   
