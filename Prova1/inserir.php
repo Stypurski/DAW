@@ -132,7 +132,7 @@
         <br>
         <div style="text-align: center;">
             <a href="listagem.php" style="color: #c2185b; font-weight: bold;">Ver listagem de perguntas</a> | 
-            <a href="usuarios.php" style="color: #c2185b; font-weight: bold;">Gerenciar Usuários</a>
+            <a href="usuario.php" style="color: #c2185b; font-weight: bold;">Gerenciar Usuários</a>
         </div>
 
 </body>
