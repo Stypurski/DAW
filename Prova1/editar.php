@@ -20,7 +20,7 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
         $cont = 1;
 
         while ($linha1= fgets($arqPerg)) {
-            if ($cont== $numero) {
+            if ($contador== $numero) {
                 $dados= explode("|",trim($linha1));
                 if (count($dados) > 1) {
                     $tipo= $dados[0];
