@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD Usuarios</title>
+    <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+    <div class="container-listagem">
+        <h1>Gerenciamento usuario</h1>
+        <div style="text-align: center; margin-bottom: 20px;">
+            <a href="inserir.html">Cadastrar pergunta</a>
+            <a href="listar.html">Listar perguntas</a>
+        </div>
+
+        <div class="container" style="margin: 0 auto 30px auto; width: 100%; max-width: 450px;">
+            <form id="formUsuario">
+                <input type="hidden" name="index" id="index" value="">
+
+                <label for="nome">Nome:</label>
+                <input type="text" name="nome" id="nome" required>
+
+                <label for="email">Email:</label>
+                <input type="text" name="email" id="email" required>
+
+                <input type="submit" id="btnSalvar" value="Cadastrar Usuário">
+            </form>
+
+            <p id="mensagem" class="mensagem" style="display: none;"></p>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Numero</th>
+                    <th>Nome</th>
+                    <th>Email</th>
+                    <th>Acoes</th>
+                </tr>
+            </thead>
+            <tbody id="tabelaUsuarios">
+            </tbody>
+        </table>
+    </div>
+
+    <script src="usuarios.js"></script>
+</body>
+</html>
