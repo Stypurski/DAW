@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inserir perguntas</title>
+    <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Cadastro perguntas</h1>
+        <p class="subtitulo">Preencha os dados</p>
+
+        <p style="text-align: center; margin-bottom: 20px;">
+            <a href="#" onclick="mudarTipo('multipla'); return false;" style="color: #c2185b; font-weight: bold; margin-right: 10px;">[Múltipla Escolha]</a>
+            <a href="#" onclick="mudarTipo('texto'); return false;" style="color: #c2185b; font-weight: bold;">[Texto]</a>
+        </p>
+
+        <form id="formInserir">
+            <input type="hidden" name="tipo" id="tipo" value="multipla">
+
+            <label for="pergunta" id="labelPergunta">Pergunta (MULTIPLA):</label>
+            <input type="text" name="pergunta" id="pergunta" required>
+
+            <div id="grupoOpcoes">
+                <label for="opcoesA">Opcao A:</label>
+                <input type="text" name="opcoesA" id="opcoesA" required>
+
+                <label for="opcoesB">Opcao B:</label>
+                <input type="text" name="opcoesB" id="opcoesB" required>
+
+                <label for="opcoesC">Opcao C:</label>
+                <input type="text" name="opcoesC" id="opcoesC" required>
+
+                <label for="opcoesD">Opcao D:</label>
+                <input type="text" name="opcoesD" id="opcoesD" required>
+
+                <label for="opcoesE">Opcao E:</label>
+                <input type="text" name="opcoesE" id="opcoesE" required>
+            </div>
+
+            <label for="resposta">Resposta / Gabarito:</label>
+            <input type="text" name="resposta" id="resposta" required>
+
+            <input type="submit" value="Cadastrar">
+        </form>
+
+        <p id="mensagem" class="mensagem" style="display: none;"></p>
+
+        <br>
+        <div style="text-align: center;">
+            <a href="listar.html" style="color: #c2185b; font-weight: bold;">Ver listagem de perguntas</a> |
+            <a href="usuarios.html" style="color: #c2185b; font-weight: bold;">Gerenciar usuarios</a>
+        </div>
+    </div>
+
+    <script src="inserir.js"></script>
+</body>
+</html>
