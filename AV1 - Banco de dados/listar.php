@@ -11,11 +11,11 @@ $resultados = $stmt->fetchAll();
 $lista = [];
 
 
-foreach ($resultados as $row) {
+foreach($resultados as $row){
   
     $opts = [];
 
-    if ($row["tipo"] === "multipla") {
+    if($row["tipo"] === "multipla"){
 
       
         $opts = [
@@ -30,10 +30,10 @@ foreach ($resultados as $row) {
 
     $lista[] = [
       
-        "numero"   => (int)$row["id"],
-        "tipo"     => $row["tipo"],
+        "numero" => (int)$row["id"],
+        "tipo" => $row["tipo"],
         "pergunta" => $row["pergunta"],
-        "opcoes"   => $opts,
+        "opcoes" => $opts,
         "resposta" => $row["resposta"]
     ];
   
