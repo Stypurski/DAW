@@ -4,9 +4,9 @@ header('Content-Type: application/json; charset=utf-8');
 require_once "conexao.php";
 
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if($_SERVER['REQUEST_METHOD'] === 'POST'){
   
-    $tipo     = $_POST["tipo"] ?? "multipla";
+    $tipo= $_POST["tipo"] ?? "multipla";
     $pergunta = $_POST["pergunta"] ?? "";
     $resposta = $_POST["resposta"] ?? "";
 
