@@ -4,7 +4,7 @@ DEFAULT COLLATE utf8mb4_unicode_ci;
 
 USE sr_waterfalls;
 
-CREATE TABLE perguntas (
+CREATE TABLE perguntas(
     
     id INT AUTO_INCREMENT PRIMARY KEY,
     tipo ENUM('multipla', 'texto') NOT NULL DEFAULT 'multipla',
@@ -19,7 +19,7 @@ CREATE TABLE perguntas (
     
 );
 
-CREATE TABLE usuarios (
+CREATE TABLE usuarios(
     id INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(150) NOT NULL,
     email VARCHAR(150) NOT NULL
